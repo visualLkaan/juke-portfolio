@@ -48,14 +48,15 @@ export function createCoverSet(p: Project): CoverSet {
   // stalls (and each texture uploads on its own frame).
   coverLoading.pending++
   ;(async () => {
-    const [, thumb, shots] = await Promise.all([
+    const [, thumb, shots, logo] = await Promise.all([
       fontsReady(),
       loadImage(p.thumbnail),
       Promise.all((p.screenshots ?? []).slice(0, 3).map(loadImage)),
+      loadImage(p.logo),
     ])
     const steps: [keyof typeof c, () => void][] = [
-      ['front', () => drawFront(ctx(c.front), p, thumb)],
-      ['spine', () => drawSpine(ctx(c.spine), p)],
+      ['front', () => drawFront(ctx(c.front), p, thumb, logo)],
+      ['spine', () => drawSpine(ctx(c.spine), p, logo)],
       ['disc', () => drawDisc(ctx(c.disc), p, thumb)],
       ['discIri', () => drawDiscIridescence(ctx(c.discIri))],
       ['inner', () => drawInner(ctx(c.inner))],
@@ -173,6 +174,13 @@ function coverImage(g: Ctx, img: HTMLImageElement, x: number, y: number, w: numb
   const iw = img.naturalWidth * s
   const ih = img.naturalHeight * s
   g.drawImage(img, x + (w - iw) / 2, y + (h - ih) / 2, iw, ih)
+}
+
+/** The project's logo image if it has one, otherwise its emoji icon. */
+function badge(g: Ctx, icon: string, logo: Img, x: number, y: number, size: number) {
+  if (!logo) return emoji(g, icon, x, y, size)
+  const s = size * 1.12
+  g.drawImage(logo, x - s / 2, y - s / 2, s, s)
 }
 
 function emoji(g: Ctx, icon: string, x: number, y: number, size: number) {
@@ -536,7 +544,7 @@ function drawArt(g: Ctx, p: Project, img: Img, x: number, y: number, w: number, 
 /** Front cover layout in canvas px (shared with the case geometry's hinge ridge). */
 export const FRONT = { left: 46, right: 26, top: 24, bottom: 132, frame: 18, band: 150 }
 
-function drawFront(g: Ctx, p: Project, thumb: Img) {
+function drawFront(g: Ctx, p: Project, thumb: Img, logo: Img = null) {
   const [W, H] = CANVAS.front
   plastic(g, W, H)
 
@@ -594,7 +602,7 @@ function drawFront(g: Ctx, p: Project, thumb: Img) {
   g.strokeStyle = 'rgba(0,0,0,0.2)'
   g.lineWidth = 3
   g.stroke()
-  emoji(g, p.icon, bx + bs / 2, bdy + bs / 2, bs * 0.62)
+  badge(g, p.icon, logo, bx + bs / 2, bdy + bs / 2, bs * 0.62)
 
   const tx = bx + bs + 20
   const tw = ax + aw - tx - 16
@@ -616,7 +624,7 @@ function drawFront(g: Ctx, p: Project, thumb: Img) {
   dvdLogo(g, ax + aw - 52, by + bandH - f - 26, 24, ink)
 }
 
-function drawSpine(g: Ctx, p: Project) {
+function drawSpine(g: Ctx, p: Project, logo: Img = null) {
   const [W, H] = CANVAS.spine
   plastic(g, W, H)
   const m = 10
@@ -632,7 +640,7 @@ function drawSpine(g: Ctx, p: Project) {
   g.beginPath()
   g.arc(W / 2, top + 50, 32, 0, Math.PI * 2)
   g.fill()
-  emoji(g, p.icon, W / 2, top + 50, 40)
+  badge(g, p.icon, logo, W / 2, top + 50, 40)
 
   // Vertical title (reads top to bottom).
   g.save()

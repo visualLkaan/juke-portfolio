@@ -108,6 +108,11 @@ export class BehaviorDirector {
     this.run(tl)
   }
 
+  /** A contact DVD was clicked: Juke waves it off with that DVD's expression. */
+  waveBye(expression: ExpressionName) {
+    this.react((c) => gsap.timeline().call(() => expr(expression)).add(BUILDERS.wave(c), 0.05).call(() => expr(expression), [], 0.1))
+  }
+
   /** The shelf flips to the other side of the tape: Juke pops his cassette door. */
   flipTape() {
     const c = this.ctx()

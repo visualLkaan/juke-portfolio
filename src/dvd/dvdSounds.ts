@@ -171,14 +171,27 @@ export function playDvdEject(index: number) {
 // --- Side flip ---------------------------------------------------------------------
 
 /** Flipping the tape: a mechanical clunk and whir, then a sparkle in the new side's key. */
-export function playSideFlip(side: 'A' | 'B') {
+export function playSideFlip(side: 'A' | 'B' | 'C') {
   safe(() => {
-    const root = side === 'A' ? 72 : 77
+    const root = { A: 72, B: 77, C: 74 }[side]
     thunk(0, 0.15, 1100, -0.2)
     sweep(0.05, 0.38, 600, 3200, 0.05, [-0.4, 0.4])
     thunk(0.44, 0.18, 900, 0.2)
     ;[0, 4, 7, 11, 14].forEach((d, i) => bell(midi(deg(root, d)), 0.5 + i * 0.07, i === 4 ? 1.4 : 0.6, 0.075, -0.4 + i * 0.2, 1))
     pad([0, 4, 7].map((d) => midi(deg(root - 12, d))), 0.45, 1.2, 0.035, [600, 2400])
     glitter(0.5, 0.7, 0.035, 0.2, [7000, 12000])
+  })
+}
+
+// --- Contact DVD ------------------------------------------------------------------
+
+/** A contact DVD opens its link: a quick rising "see you there!" run in its key. */
+export function playContactOpen(index: number) {
+  safe(() => {
+    const root = rootOf(index)
+    thunk(0, 0.12, 1300, 0)
+    ;[0, 2, 4, 7, 9, 14].forEach((d, i) => bell(midi(deg(root, d)), 0.04 + i * 0.06, i === 5 ? 1.3 : 0.5, 0.07, -0.5 + i * 0.2, 1))
+    bass(midi(root - 24), 0.04, 0.8, 0.12)
+    glitter(0.3, 0.6, 0.03, 0.4, [7000, 12000])
   })
 }

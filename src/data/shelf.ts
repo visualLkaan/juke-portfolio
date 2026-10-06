@@ -1,4 +1,4 @@
-import { PROJECTS, type Project } from './projects'
+import { CONTACTS, PROJECTS, type Project } from './projects'
 
 // Dev only: ?dvds=N fills the shelf with N test projects (layout check), the last
 // one with a very long name.
@@ -12,5 +12,5 @@ function devProjects(): Project[] {
   })
 }
 
-/** The projects on the shelf (normally just PROJECTS). */
-export const SHELF_PROJECTS = devProjects()
+/** Everything on the shelf: the projects (sides A and B) and the contact DVDs (side C). */
+export const SHELF_PROJECTS = [...devProjects(), ...CONTACTS]

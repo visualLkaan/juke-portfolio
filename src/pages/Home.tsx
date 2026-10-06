@@ -12,13 +12,24 @@ import type { Project } from '../data/projects'
 import { SHELF_PROJECTS } from '../data/shelf'
 import { setFlashElement } from '../transitions/flash'
 import { useTransition } from '../transitions/transitionStore'
+import { jukeApi } from '../juke/jukeApi'
+import { playContactOpen } from '../dvd/dvdSounds'
 
 // Heavy parts load on demand: the intro screen shows while three.js downloads.
 const Stage3D = lazy(() => import('../scene/Stage3D'))
 const ProjectPage = lazy(() => import('./Project').then((m) => ({ default: m.ProjectPage })))
 const transitions = () => import('../transitions/insertDvd')
 
-const indexOf = (slug: string | null) => SHELF_PROJECTS.findIndex((p) => p.slug === slug)
+// Contact DVDs (side C) are links, not pages.
+const indexOf = (slug: string | null) => SHELF_PROJECTS.findIndex((p) => p.slug === slug && !p.href)
+
+/** A contact DVD: Juke waves it off and the profile opens in a new tab. */
+function openContact(p: Project) {
+  // Opened straight from the click, so pop-up blockers let it through.
+  window.open(p.href, '_blank', 'noopener,noreferrer')
+  jukeApi.director?.waveBye(p.jukeExpression)
+  playContactOpen(SHELF_PROJECTS.indexOf(p))
+}
 
 export default function Home() {
   const navigate = useNavigate()
@@ -34,6 +45,7 @@ export default function Home() {
 
   const select = useCallback((p: Project) => {
     if (!useLoad.getState().introDone) return
+    if (p.href) return openContact(p)
     void transitions().then((m) => m.insertDvd(p, indexOf(p.slug), navigate))
   }, [navigate])
   const eject = useCallback(() => {

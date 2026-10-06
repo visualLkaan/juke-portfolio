@@ -141,6 +141,9 @@
   }
   .side-switch__name {
     font-size: 17px;
+    /* "Social Medias & Contacts" is long: let it take two lines on narrow screens. */
+    white-space: normal;
+    line-height: 0.95;
   }
   .side-switch__arrow {
     width: 34px;

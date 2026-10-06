@@ -6,13 +6,17 @@ export type MediaItem =
   | { type: 'image'; src: string; small?: string; width: number; height: number; caption: string }
   | { type: 'video'; src: string; poster: string; width: number; height: number; caption: string }
 
-export type Side = 'A' | 'B'
+export type Side = 'A' | 'B' | 'C'
 
 /** Names shown on the side switch. */
 export const SIDES: Record<Side, string> = {
   A: 'Print & Posters',
   B: 'Brands & Motion',
+  C: 'Social Medias & Contacts',
 }
+
+/** The order the side switch steps through. */
+export const SIDE_ORDER: Side[] = ['A', 'B', 'C']
 
 export type Project = {
   slug: string
@@ -39,6 +43,10 @@ export type Project = {
   tech: string[]
   links: { live?: string; github?: string }
   jukeExpression: ExpressionName
+  /** A contact DVD: clicking it opens this address (new tab) instead of a project page. */
+  href?: string
+  /** Small logo image drawn in the cover badge and on the spine instead of the icon. */
+  logo?: string
 }
 
 const gallery = (slug: string) => ((media as Record<string, MediaItem[]>)[slug] ?? []) as MediaItem[]
@@ -255,5 +263,67 @@ export const PROJECTS: Project[] = [
     tech: ['3D Modelling', 'Lighting', 'Rendering'],
     links: {},
     jukeExpression: 'wink',
+  }),
+]
+
+// Side C: contact DVDs. Clicking one goes straight to the profile / a new message.
+const contact = (p: Omit<Project, 'side' | 'coverTitle' | 'thumbnail' | 'logo' | 'links' | 'screenshots'>): Project => ({
+  ...p,
+  side: 'C',
+  coverTitle: false,
+  thumbnail: `/contacts/${p.slug}.svg`,
+  logo: `/contacts/${p.slug}-logo.svg`,
+  screenshots: [],
+  links: {},
+})
+
+export const CONTACTS: Project[] = [
+  contact({
+    slug: 'instagram',
+    title: 'Instagram',
+    tagline: '@kaanaccr — posters, process and work in progress.',
+    description:
+      'Follow along on Instagram for new posters, design experiments and behind-the-scenes process shots. Click the DVD to open my profile.',
+    color: '#d6249f',
+    icon: '📸',
+    tech: ['@kaanaccr', 'Follow'],
+    href: 'https://www.instagram.com/kaanaccr/',
+    jukeExpression: 'love',
+  }),
+  contact({
+    slug: 'teams',
+    title: 'Microsoft Teams',
+    tagline: 'Chat with me on Teams.',
+    description:
+      'Reach me on Microsoft Teams for school projects, collaborations or a quick call. Click the DVD to start a chat with kaan.acar@bahcesehir.edu.tr.',
+    color: '#5b5fc7',
+    icon: '💬',
+    tech: ['Chat', 'Call'],
+    href: 'https://teams.microsoft.com/l/chat/0/0?users=kaan.acar@bahcesehir.edu.tr',
+    jukeExpression: 'happy',
+  }),
+  contact({
+    slug: 'linkedin',
+    title: 'LinkedIn',
+    tagline: 'Kaan Acar — let’s connect.',
+    description:
+      'My professional profile: education, experience and projects. Click the DVD to open my LinkedIn profile and connect.',
+    color: '#0a66c2',
+    icon: '💼',
+    tech: ['Connect', 'Experience'],
+    href: 'https://www.linkedin.com/in/kaan-acar-b93b703b6/',
+    jukeExpression: 'proud',
+  }),
+  contact({
+    slug: 'gmail',
+    title: 'Gmail',
+    tagline: 'acarkaan768@gmail.com',
+    description:
+      'Got a project, a question or just want to say hi? Click the DVD to write me an email at acarkaan768@gmail.com.',
+    color: '#ea4335',
+    icon: '✉️',
+    tech: ['Email', 'Say hi'],
+    href: 'https://mail.google.com/mail/?view=cm&fs=1&to=acarkaan768@gmail.com',
+    jukeExpression: 'excited',
   }),
 ]
