@@ -1,0 +1,117 @@
+/* Bottom-right volume pill: speaker button + a slider that slides out to the left. */
+.volume {
+  position: fixed;
+  right: 18px;
+  bottom: 18px;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  height: 48px;
+  padding: 0;
+  border-radius: 999px;
+  border: 3px solid #120c08;
+  background: #fff6df;
+  box-shadow: 0 4px 0 #120c08;
+  box-sizing: border-box;
+  transition: box-shadow 0.15s;
+}
+
+.volume__button {
+  flex: none;
+  width: 42px;
+  height: 42px;
+  display: grid;
+  place-items: center;
+  margin: 0;
+  border: 0;
+  border-radius: 50%;
+  background: #ffd23f;
+  color: #120c08;
+  cursor: pointer;
+  transition:
+    transform 0.12s ease,
+    background 0.2s;
+}
+
+.volume__button[aria-pressed='true'] {
+  background: #f3e9d2;
+}
+
+.volume__button:hover {
+  transform: rotate(-6deg) scale(1.05);
+}
+
+.volume__button:active {
+  transform: scale(0.94);
+}
+
+.volume__button:focus-visible,
+.volume__slider:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 3px;
+}
+
+.volume__slider {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 0;
+  margin: 0;
+  padding: 0;
+  height: 42px;
+  background: transparent;
+  opacity: 0;
+  cursor: pointer;
+  transition:
+    width 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+    margin 0.28s cubic-bezier(0.2, 0.8, 0.2, 1),
+    opacity 0.2s;
+}
+
+.volume.is-open .volume__slider {
+  width: 120px;
+  margin: 0 10px 0 16px;
+  opacity: 1;
+}
+
+/* Track: filled up to the current level. */
+.volume__slider::-webkit-slider-runnable-track {
+  height: 10px;
+  border-radius: 999px;
+  border: 2px solid #120c08;
+  background: linear-gradient(90deg, #ff9a3c var(--vol), #e8dcc0 var(--vol));
+}
+
+.volume__slider::-moz-range-track {
+  height: 6px;
+  border-radius: 999px;
+  border: 2px solid #120c08;
+  background: linear-gradient(90deg, #ff9a3c var(--vol), #e8dcc0 var(--vol));
+}
+
+.volume__slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 20px;
+  height: 20px;
+  margin-top: -7px;
+  border-radius: 50%;
+  border: 3px solid #120c08;
+  background: #ffd23f;
+  box-shadow: 0 2px 0 #120c08;
+}
+
+.volume__slider::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  border: 3px solid #120c08;
+  background: #ffd23f;
+}
+
+/* Phones: top-right, clear of the scrollable DVD row. */
+@media (max-width: 767.98px), (orientation: portrait) {
+  .volume {
+    top: 14px;
+    bottom: auto;
+    right: 14px;
+  }
+}

@@ -1,0 +1,36 @@
+.dvd-rail {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  box-sizing: border-box;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x proximity;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+  /* Keep vertical swipes for the page; horizontal pans scroll the rail. */
+  touch-action: pan-x;
+}
+
+.dvd-rail::-webkit-scrollbar {
+  display: none;
+}
+
+.dvd-rail__item {
+  flex: none;
+  height: 100%;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  scroll-snap-align: center;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.dvd-rail__item:focus-visible {
+  outline: 3px solid #ffd84a;
+  outline-offset: -6px;
+  border-radius: 12px;
+}

@@ -1,0 +1,426 @@
+.deck {
+  position: fixed;
+  inset: 0;
+  z-index: 20;
+  overflow-y: auto;
+  overflow-x: hidden;
+  outline: none;
+  color: #f4ecdf;
+  font-family: 'Nunito', 'Segoe UI', sans-serif;
+  background:
+    radial-gradient(120% 70% at 50% 0%, color-mix(in srgb, var(--c) 45%, transparent) 0%, transparent 60%),
+    linear-gradient(180deg, #1d1820 0%, #141016 100%);
+  animation: deck-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+}
+
+/* Faint CRT scanlines over everything. */
+.deck::after {
+  content: '';
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  background: repeating-linear-gradient(180deg, rgba(255, 255, 255, 0.025) 0 1px, transparent 1px 3px);
+  mix-blend-mode: overlay;
+}
+
+@keyframes deck-in {
+  from {
+    opacity: 0;
+    transform: scale(1.06);
+    filter: blur(6px) brightness(1.6);
+  }
+}
+
+.deck__bar {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  padding: 14px clamp(16px, 4vw, 40px);
+  background: linear-gradient(180deg, #2a2430, #1c1820);
+  border-bottom: 3px solid #0d0a0f;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+.deck__lcd {
+  flex: 1;
+  min-width: 0;
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 8px 16px;
+  border-radius: 10px;
+  background: #0f1a12;
+  border: 2px solid #050806;
+  box-shadow: inset 0 0 18px rgba(0, 0, 0, 0.8);
+  color: #8dffb0;
+  font-family: 'VT323', ui-monospace, 'Consolas', monospace;
+  font-size: 22px;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(141, 255, 176, 0.6);
+  white-space: nowrap;
+}
+
+.deck__lcd-title {
+  flex: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.deck__led {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #ff4a4a;
+  box-shadow: 0 0 10px #ff4a4a;
+  animation: led 1.2s steps(2) infinite;
+}
+
+@keyframes led {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+/* Chunky transport keys. */
+.deck__key {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 18px;
+  border: 3px solid #0d0a0f;
+  border-radius: 12px;
+  background: linear-gradient(180deg, #4a4252, #2e2934);
+  box-shadow: 0 5px 0 #0d0a0f;
+  color: #f4ecdf;
+  font: 800 16px 'Nunito', sans-serif;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.08s, box-shadow 0.08s;
+}
+
+.deck__key:hover {
+  filter: brightness(1.12);
+}
+
+.deck__key:active {
+  transform: translateY(4px);
+  box-shadow: 0 1px 0 #0d0a0f;
+}
+
+.deck__key:focus-visible {
+  outline: 3px solid #ffd84a;
+  outline-offset: 3px;
+}
+
+.deck__eject {
+  background: linear-gradient(180deg, #ffd84a, #f0a92a);
+  color: #1a1030;
+}
+
+.deck__key--accent {
+  background: var(--c);
+  color: var(--ink);
+}
+
+.deck__key--off {
+  opacity: 0.45;
+  cursor: default;
+}
+
+.deck__key--off:active {
+  transform: none;
+  box-shadow: 0 5px 0 #0d0a0f;
+}
+
+.deck__screen {
+  max-width: 1080px;
+  margin: 0 auto;
+  padding: clamp(20px, 5vw, 56px) clamp(16px, 4vw, 40px) 140px;
+}
+
+.deck__hero {
+  display: grid;
+  grid-template-columns: minmax(220px, 380px) 1fr;
+  gap: clamp(24px, 5vw, 60px);
+  align-items: center;
+}
+
+.deck__cover {
+  transform: rotate(-3deg);
+  animation: cover-in 0.9s 0.15s cubic-bezier(0.2, 0.9, 0.3, 1.2) both;
+}
+
+.deck__cover img,
+.deck__cover-ph {
+  display: block;
+  width: 100%;
+  aspect-ratio: 640 / 910;
+  border-radius: 14px;
+  box-shadow:
+    0 0 0 3px #0d0a0f,
+    0 24px 50px rgba(0, 0, 0, 0.55),
+    0 0 60px color-mix(in srgb, var(--c) 50%, transparent);
+}
+
+.deck__cover-ph {
+  background: var(--c);
+}
+
+@keyframes cover-in {
+  from {
+    opacity: 0;
+    transform: rotate(-12deg) translateY(30px) scale(0.9);
+  }
+}
+
+.deck__icon {
+  font-size: 40px;
+}
+
+.deck__title {
+  margin: 4px 0 6px;
+  font: 400 clamp(44px, 7vw, 88px) / 0.95 'Lilita One', 'Arial Black', sans-serif;
+  text-transform: uppercase;
+  color: var(--title);
+  -webkit-text-stroke: 3px #0d0a0f;
+  paint-order: stroke fill;
+  text-shadow: 4px 5px 0 rgba(0, 0, 0, 0.45);
+  transform: rotate(-2deg);
+  transform-origin: left;
+}
+
+.deck__tagline {
+  margin: 0 0 18px;
+  font-size: clamp(18px, 2.2vw, 22px);
+  font-weight: 800;
+  opacity: 0.9;
+}
+
+.deck__tech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 22px;
+  padding: 0;
+  list-style: none;
+}
+
+.deck__tech li {
+  padding: 5px 14px;
+  border-radius: 999px;
+  border: 2px solid color-mix(in srgb, var(--c) 70%, #fff);
+  background: color-mix(in srgb, var(--c) 25%, transparent);
+  font-weight: 800;
+  font-size: 14px;
+}
+
+.deck__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.deck__panel {
+  margin-top: clamp(32px, 6vw, 56px);
+  padding: clamp(18px, 3vw, 28px);
+  border-radius: 18px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 2px solid rgba(255, 255, 255, 0.07);
+}
+
+.deck__panel h2 {
+  margin: 0 0 10px;
+  font: 400 26px 'Lilita One', sans-serif;
+  letter-spacing: 0.5px;
+  color: var(--title);
+}
+
+.deck__panel p {
+  margin: 0;
+  font-size: 18px;
+  line-height: 1.6;
+  max-width: 70ch;
+}
+
+.deck__shots {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+  gap: 16px;
+}
+
+.deck__shot {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.deck__shot img {
+  width: 100%;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  border-radius: 10px;
+  border: 3px solid #0d0a0f;
+}
+
+.deck__shot span {
+  font-family: 'VT323', monospace;
+  font-size: 18px;
+  opacity: 0.8;
+}
+
+.mini-juke {
+  position: fixed;
+  right: 18px;
+  bottom: 16px;
+  z-index: 3;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5));
+  animation: mini-bob 2.4s ease-in-out infinite;
+}
+
+@keyframes mini-bob {
+  50% {
+    transform: translateY(-5px) rotate(2deg);
+  }
+}
+
+@media (max-width: 720px) {
+  .deck__hero {
+    grid-template-columns: 1fr;
+  }
+  .deck__cover {
+    max-width: 260px;
+    margin: 0 auto;
+  }
+  .deck__lcd {
+    font-size: 18px;
+    gap: 10px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .deck,
+  .deck__cover,
+  .mini-juke,
+  .deck__led {
+    animation: none;
+  }
+}
+
+
+/* "The project is below" — a friendly nudge on arrival, gone once you scroll. */
+.scroll-hint {
+  position: fixed;
+  left: 50%;
+  bottom: clamp(18px, 4vh, 34px);
+  z-index: 3;
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 18px 12px 14px;
+  border: 3px solid #0d0a0f;
+  border-radius: 999px;
+  background: #0f1a12;
+  color: #8dffb0;
+  font: 400 22px 'VT323', ui-monospace, monospace;
+  letter-spacing: 0.6px;
+  text-shadow: 0 0 8px rgba(141, 255, 176, 0.6);
+  box-shadow:
+    0 6px 0 #0d0a0f,
+    0 14px 30px rgba(0, 0, 0, 0.5),
+    0 0 40px color-mix(in srgb, var(--c) 45%, transparent);
+  cursor: pointer;
+  transform: translateX(-50%);
+  animation:
+    hint-in 0.7s 1.1s cubic-bezier(0.2, 0.9, 0.3, 1.3) both,
+    hint-bob 2.2s 1.8s ease-in-out infinite;
+  transition:
+    opacity 0.4s,
+    transform 0.4s;
+}
+
+.scroll-hint:hover {
+  filter: brightness(1.15);
+}
+
+.scroll-hint:focus-visible {
+  outline: 3px solid #ffd84a;
+  outline-offset: 4px;
+}
+
+.scroll-hint.is-gone {
+  opacity: 0;
+  pointer-events: none;
+  animation: none;
+  transform: translateX(-50%) translateY(30px);
+}
+
+.scroll-hint__icon {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--c);
+  color: var(--ink);
+  font-size: 14px;
+  text-shadow: none;
+}
+
+.scroll-hint__arrows {
+  display: grid;
+  gap: 1px;
+}
+
+.scroll-hint__arrows i {
+  width: 10px;
+  height: 10px;
+  border-right: 3px solid currentColor;
+  border-bottom: 3px solid currentColor;
+  transform: rotate(45deg);
+  animation: hint-arrow 1.4s ease-in-out infinite;
+}
+
+.scroll-hint__arrows i:last-child {
+  animation-delay: 0.18s;
+}
+
+@keyframes hint-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(40px) scale(0.9);
+  }
+}
+
+@keyframes hint-bob {
+  50% {
+    transform: translateX(-50%) translateY(-6px);
+  }
+}
+
+@keyframes hint-arrow {
+  0%,
+  100% {
+    opacity: 0.25;
+  }
+  50% {
+    opacity: 1;
+  }
+}
+
+@media (max-width: 720px) {
+  .scroll-hint {
+    font-size: 19px;
+    bottom: 18px;
+    white-space: nowrap;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .scroll-hint,
+  .scroll-hint__arrows i {
+    animation: none;
+  }
+}

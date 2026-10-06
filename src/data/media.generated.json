@@ -1,0 +1,270 @@
+{
+  "white-noise": [
+    {
+      "type": "image",
+      "src": "/projects/white-noise/g1.webp",
+      "small": "/projects/white-noise/g1-sm.webp",
+      "width": 2400,
+      "height": 1350,
+      "caption": "Cover"
+    },
+    {
+      "type": "image",
+      "src": "/projects/white-noise/g2.webp",
+      "small": "/projects/white-noise/g2-sm.webp",
+      "width": 2400,
+      "height": 1555,
+      "caption": "Printed mockup"
+    }
+  ],
+  "kanye-swiss-style": [
+    {
+      "type": "image",
+      "src": "/projects/kanye-swiss-style/g1.webp",
+      "small": "/projects/kanye-swiss-style/g1-sm.webp",
+      "width": 2400,
+      "height": 1350,
+      "caption": "Making the Grid"
+    },
+    {
+      "type": "image",
+      "src": "/projects/kanye-swiss-style/g2.webp",
+      "small": "/projects/kanye-swiss-style/g2-sm.webp",
+      "width": 2400,
+      "height": 1600,
+      "caption": "Spread 1"
+    },
+    {
+      "type": "image",
+      "src": "/projects/kanye-swiss-style/g3.webp",
+      "small": "/projects/kanye-swiss-style/g3-sm.webp",
+      "width": 2400,
+      "height": 1600,
+      "caption": "Spread 2"
+    }
+  ],
+  "kanye-break-the-grid": [
+    {
+      "type": "image",
+      "src": "/projects/kanye-break-the-grid/g1.webp",
+      "small": "/projects/kanye-break-the-grid/g1-sm.webp",
+      "width": 2400,
+      "height": 1350,
+      "caption": "Breaking the Grid"
+    },
+    {
+      "type": "image",
+      "src": "/projects/kanye-break-the-grid/g2.webp",
+      "small": "/projects/kanye-break-the-grid/g2-sm.webp",
+      "width": 2400,
+      "height": 1601,
+      "caption": "Poster 1"
+    },
+    {
+      "type": "image",
+      "src": "/projects/kanye-break-the-grid/g3.webp",
+      "small": "/projects/kanye-break-the-grid/g3-sm.webp",
+      "width": 2400,
+      "height": 1601,
+      "caption": "Poster 2"
+    }
+  ],
+  "mola-identity": [
+    {
+      "type": "image",
+      "src": "/projects/mola-identity/g1.webp",
+      "small": "/projects/mola-identity/g1-sm.webp",
+      "width": 1600,
+      "height": 900,
+      "caption": "Logo"
+    },
+    {
+      "type": "image",
+      "src": "/projects/mola-identity/g2.webp",
+      "small": "/projects/mola-identity/g2-sm.webp",
+      "width": 2400,
+      "height": 1350,
+      "caption": "Brand identity"
+    }
+  ],
+  "who-i-am": [
+    {
+      "type": "video",
+      "src": "/projects/who-i-am/film1.mp4",
+      "poster": "/projects/who-i-am/film1.jpg",
+      "width": 1600,
+      "height": 900,
+      "caption": "Who I Am"
+    }
+  ],
+  "home-tour": [
+    {
+      "type": "video",
+      "src": "/projects/home-tour/film1.mp4",
+      "poster": "/projects/home-tour/film1.jpg",
+      "width": 1600,
+      "height": 900,
+      "caption": "Home tour"
+    }
+  ],
+  "didot-specimen": [
+    {
+      "type": "image",
+      "src": "/projects/didot-specimen/g1.webp",
+      "small": "/projects/didot-specimen/g1-sm.webp",
+      "width": 2400,
+      "height": 1350,
+      "caption": "Didot Specimen"
+    },
+    {
+      "type": "image",
+      "src": "/projects/didot-specimen/g2.webp",
+      "small": "/projects/didot-specimen/g2-sm.webp",
+      "width": 2400,
+      "height": 3394,
+      "caption": "Type specimen poster"
+    }
+  ],
+  "unknown-place": [
+    {
+      "type": "image",
+      "src": "/projects/unknown-place/g1.webp",
+      "small": "/projects/unknown-place/g1-sm.webp",
+      "width": 2400,
+      "height": 1350,
+      "caption": "Unknown Place"
+    },
+    {
+      "type": "image",
+      "src": "/projects/unknown-place/g2.webp",
+      "small": "/projects/unknown-place/g2-sm.webp",
+      "width": 1131,
+      "height": 1600,
+      "caption": "Poster"
+    }
+  ],
+  "scarface-poster": [
+    {
+      "type": "image",
+      "src": "/projects/scarface-poster/g1.webp",
+      "small": "/projects/scarface-poster/g1-sm.webp",
+      "width": 2400,
+      "height": 1350,
+      "caption": "Scarface"
+    },
+    {
+      "type": "image",
+      "src": "/projects/scarface-poster/g2.webp",
+      "small": "/projects/scarface-poster/g2-sm.webp",
+      "width": 2400,
+      "height": 3360,
+      "caption": "Alternative film poster"
+    }
+  ],
+  "messi-illustration": [
+    {
+      "type": "image",
+      "src": "/projects/messi-illustration/g1.webp",
+      "small": "/projects/messi-illustration/g1-sm.webp",
+      "width": 2400,
+      "height": 1350,
+      "caption": "Messi Illustration"
+    },
+    {
+      "type": "image",
+      "src": "/projects/messi-illustration/g2.webp",
+      "small": "/projects/messi-illustration/g2-sm.webp",
+      "width": 2400,
+      "height": 3395,
+      "caption": "World Cup illustration"
+    }
+  ],
+  "linka-identity": [
+    {
+      "type": "image",
+      "src": "/projects/linka-identity/g1.webp",
+      "small": "/projects/linka-identity/g1-sm.webp",
+      "width": 1024,
+      "height": 577,
+      "caption": "LINKA"
+    },
+    {
+      "type": "image",
+      "src": "/projects/linka-identity/g2.webp",
+      "small": "/projects/linka-identity/g2-sm.webp",
+      "width": 1024,
+      "height": 577,
+      "caption": "What is LINKA"
+    },
+    {
+      "type": "image",
+      "src": "/projects/linka-identity/g3.webp",
+      "small": "/projects/linka-identity/g3-sm.webp",
+      "width": 1024,
+      "height": 577,
+      "caption": "Logo"
+    },
+    {
+      "type": "image",
+      "src": "/projects/linka-identity/g4.webp",
+      "small": "/projects/linka-identity/g4-sm.webp",
+      "width": 1024,
+      "height": 577,
+      "caption": "Logotype"
+    },
+    {
+      "type": "image",
+      "src": "/projects/linka-identity/g5.webp",
+      "small": "/projects/linka-identity/g5-sm.webp",
+      "width": 1024,
+      "height": 577,
+      "caption": "Colours"
+    },
+    {
+      "type": "image",
+      "src": "/projects/linka-identity/g6.webp",
+      "small": "/projects/linka-identity/g6-sm.webp",
+      "width": 1024,
+      "height": 577,
+      "caption": "App in use"
+    },
+    {
+      "type": "image",
+      "src": "/projects/linka-identity/g7.webp",
+      "small": "/projects/linka-identity/g7-sm.webp",
+      "width": 1024,
+      "height": 577,
+      "caption": "Logo variations"
+    }
+  ],
+  "music-video": [
+    {
+      "type": "video",
+      "src": "/projects/music-video/film1.mp4",
+      "poster": "/projects/music-video/film1.jpg",
+      "width": 1600,
+      "height": 900,
+      "caption": "Music video"
+    }
+  ],
+  "fight-club-titles": [
+    {
+      "type": "video",
+      "src": "/projects/fight-club-titles/film1.mp4",
+      "poster": "/projects/fight-club-titles/film1.jpg",
+      "width": 1600,
+      "height": 900,
+      "caption": "Title sequence"
+    }
+  ],
+  "fight-club-soap": [
+    {
+      "type": "video",
+      "src": "/projects/fight-club-soap/film1.mp4",
+      "poster": "/projects/fight-club-soap/film1.jpg",
+      "width": 1600,
+      "height": 900,
+      "caption": "3D soap logo"
+    }
+  ]
+}

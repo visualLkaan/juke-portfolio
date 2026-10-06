@@ -1,0 +1,156 @@
+/* Sits under the DVD arc (desktop) or above the DVD row (phones). */
+.side-switch {
+  position: fixed;
+  left: 66%;
+  bottom: 24px;
+  z-index: 9;
+  display: flex;
+  align-items: stretch;
+  gap: 6px;
+  padding: 5px;
+  border: 3px solid #120c08;
+  border-radius: 16px;
+  background: #fff6df;
+  box-shadow: 0 4px 0 #120c08, 0 14px 28px rgba(0, 0, 0, 0.35);
+  transform: translateX(-50%);
+  animation: ss-in 0.6s 0.4s cubic-bezier(0.2, 0.9, 0.3, 1.3) both;
+}
+
+.side-switch button {
+  border: 3px solid #120c08;
+  border-radius: 11px;
+  cursor: pointer;
+  font: inherit;
+  transition:
+    transform 0.08s,
+    box-shadow 0.08s,
+    filter 0.15s;
+}
+
+.side-switch button:hover {
+  filter: brightness(1.08);
+}
+
+.side-switch button:active {
+  transform: translateY(3px);
+  box-shadow: none;
+}
+
+.side-switch button:focus-visible {
+  outline: 3px solid #fff;
+  outline-offset: 2px;
+}
+
+.side-switch__arrow {
+  width: 40px;
+  background: #ffd23f;
+  color: #120c08;
+  font-size: 16px;
+  box-shadow: 0 3px 0 #120c08;
+}
+
+/* On first visit the "next" arrow nudges a few times so people find side B. */
+.side-switch.is-new .side-switch__arrow--next {
+  animation: ss-nudge 1.2s 1.6s ease-in-out 4;
+}
+
+.side-switch__lcd {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 250px;
+  padding: 6px 14px;
+  background: #0f1a12;
+  color: #8dffb0;
+  box-shadow: inset 0 0 14px rgba(0, 0, 0, 0.8);
+  font-family: 'VT323', ui-monospace, monospace;
+  text-shadow: 0 0 8px rgba(141, 255, 176, 0.55);
+  text-align: left;
+}
+
+.side-switch__side {
+  white-space: nowrap;
+  font-size: 24px;
+  letter-spacing: 1px;
+  color: #ffd84a;
+  text-shadow: 0 0 8px rgba(255, 216, 74, 0.5);
+}
+
+.side-switch__name {
+  font-size: 20px;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+/* A tiny tape reel that turns. */
+.side-switch__reel {
+  flex: none;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  border: 3px solid #8dffb0;
+  box-sizing: border-box;
+  background:
+    linear-gradient(#8dffb0, #8dffb0) center / 2px 100% no-repeat,
+    linear-gradient(#8dffb0, #8dffb0) center / 100% 2px no-repeat;
+  animation: ss-spin 2.4s linear infinite;
+}
+
+@keyframes ss-in {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(30px);
+  }
+}
+
+@keyframes ss-nudge {
+  0%,
+  100% {
+    transform: none;
+  }
+  30% {
+    transform: translateX(5px) scale(1.12);
+  }
+  60% {
+    transform: translateX(-1px);
+  }
+}
+
+@keyframes ss-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Phones: centred, just above the scrollable DVD row (RAIL.heightPx = 190). */
+@media (max-width: 767.98px), (orientation: portrait) {
+  .side-switch {
+    left: 50%;
+    bottom: 198px;
+    max-width: calc(100vw - 24px);
+    box-sizing: border-box;
+  }
+  .side-switch__lcd {
+    min-width: 0;
+    gap: 8px;
+    padding: 4px 10px;
+  }
+  .side-switch__side {
+    font-size: 20px;
+  }
+  .side-switch__name {
+    font-size: 17px;
+  }
+  .side-switch__arrow {
+    width: 34px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .side-switch,
+  .side-switch__reel,
+  .side-switch.is-new .side-switch__arrow--next {
+    animation: none;
+  }
+}

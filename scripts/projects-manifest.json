@@ -1,0 +1,285 @@
+{
+  "$comment": "Source files for each project. `npm run import-projects` turns them into web assets in public/projects/<slug>/ and src/data/media.generated.json. crop = [x0, y0, x1, y1] as fractions of the cover image: the DVD cover is cut from there (centred, at the cover's aspect). fit = \"contain\" keeps the whole image (for wide typographic designs) over a blurred copy of itself. brightness = optional cover exposure tweak (1 = unchanged). fill = \"edge\" pads a contain-fit cover with the image corner colour instead of a blur.",
+  "root": "C:/Users/HESAP/Desktop/kaanacar-portfolio",
+  "projects": [
+    {
+      "slug": "white-noise",
+      "cover": {
+        "file": "reference2/main photo book cover.pdf",
+        "crop": [
+          0.53,
+          0.05,
+          0.99,
+          0.95
+        ]
+      },
+      "gallery": [
+        {
+          "file": "reference2/main photo book cover.pdf",
+          "caption": "Cover"
+        },
+        {
+          "file": "reference2/bookcover mockup.jpg",
+          "caption": "Printed mockup"
+        }
+      ]
+    },
+    {
+      "slug": "kanye-swiss-style",
+      "cover": {
+        "file": "reference3/main photo2 kanye.pdf",
+        "fit": "contain"
+      },
+      "gallery": [
+        {
+          "file": "reference3/main photo2 kanye.pdf",
+          "caption": "Making the Grid"
+        },
+        {
+          "file": "reference3/kanye final1.pdf",
+          "caption": "Spread 1"
+        },
+        {
+          "file": "reference3/kanye final2.pdf",
+          "caption": "Spread 2"
+        }
+      ]
+    },
+    {
+      "slug": "kanye-break-the-grid",
+      "cover": {
+        "file": "reference4/main photo3 breakgrid.pdf",
+        "fit": "contain"
+      },
+      "gallery": [
+        {
+          "file": "reference4/main photo3 breakgrid.pdf",
+          "caption": "Breaking the Grid"
+        },
+        {
+          "file": "reference4/break the grid 1. sayfa final.pdf",
+          "caption": "Poster 1"
+        },
+        {
+          "file": "reference4/break the grid2 final.pdf",
+          "caption": "Poster 2"
+        }
+      ]
+    },
+    {
+      "slug": "mola-identity",
+      "cover": {
+        "file": "reference12/Main Photo mola.jpeg",
+        "fit": "contain",
+        "fill": "edge"
+      },
+      "gallery": [
+        {
+          "file": "reference12/Main Photo mola.jpeg",
+          "caption": "Logo"
+        },
+        {
+          "file": "reference12/Mola brand idendity.pdf",
+          "caption": "Brand identity"
+        }
+      ]
+    },
+    {
+      "slug": "who-i-am",
+      "cover": {
+        "video": "who i am video/whoiamvideo.mkv",
+        "time": 21.8,
+        "crop": [
+          0.47,
+          0,
+          0.97,
+          1
+        ]
+      },
+      "gallery": [
+        {
+          "video": "who i am video/whoiamvideo.mkv",
+          "poster": 21.8,
+          "caption": "Who I Am"
+        }
+      ]
+    },
+    {
+      "slug": "home-tour",
+      "cover": {
+        "video": "ev tanıtım videosu/ev tanıtım videosu (2).mp4",
+        "time": 17.42,
+        "crop": [
+          0.25,
+          0,
+          0.75,
+          1
+        ],
+        "brightness": 1.25
+      },
+      "gallery": [
+        {
+          "video": "ev tanıtım videosu/ev tanıtım videosu (2).mp4",
+          "poster": 17.42,
+          "caption": "Home tour"
+        }
+      ]
+    },
+    {
+      "slug": "didot-specimen",
+      "cover": {
+        "file": "reference5/main photo didot.pdf",
+        "fit": "contain"
+      },
+      "gallery": [
+        {
+          "file": "reference5/main photo didot.pdf",
+          "caption": "Didot Specimen"
+        },
+        {
+          "file": "reference5/Didot Type Specimen Final.jpg",
+          "caption": "Type specimen poster"
+        }
+      ]
+    },
+    {
+      "slug": "unknown-place",
+      "cover": {
+        "file": "reference8/main photo8 unknown place.pdf",
+        "fit": "contain",
+        "fill": "edge"
+      },
+      "gallery": [
+        {
+          "file": "reference8/main photo8 unknown place.pdf",
+          "caption": "Unknown Place"
+        },
+        {
+          "file": "reference8/photo1.jpeg",
+          "caption": "Poster"
+        }
+      ]
+    },
+    {
+      "slug": "scarface-poster",
+      "cover": {
+        "file": "reference10/main photo10 scarface.pdf",
+        "fit": "contain",
+        "fill": "edge"
+      },
+      "gallery": [
+        {
+          "file": "reference10/main photo10 scarface.pdf",
+          "caption": "Scarface"
+        },
+        {
+          "file": "reference10/scarfaceee.pdf",
+          "caption": "Alternative film poster"
+        }
+      ]
+    },
+    {
+      "slug": "messi-illustration",
+      "cover": {
+        "file": "reference11/main photo11 messi.pdf",
+        "fit": "contain",
+        "fill": "edge"
+      },
+      "gallery": [
+        {
+          "file": "reference11/main photo11 messi.pdf",
+          "caption": "Messi Illustration"
+        },
+        {
+          "file": "reference11/messi worldcup.pdf",
+          "caption": "World Cup illustration"
+        }
+      ]
+    },
+    {
+      "slug": "linka-identity",
+      "cover": {
+        "file": "references/main page.jpg",
+        "fit": "contain",
+        "fill": "edge"
+      },
+      "gallery": [
+        {
+          "file": "references/main page.jpg",
+          "caption": "LINKA"
+        },
+        {
+          "file": "references/enter 1st.jpg",
+          "caption": "What is LINKA"
+        },
+        {
+          "file": "references/enter 2st.jpg",
+          "caption": "Logo"
+        },
+        {
+          "file": "references/enter 3st.jpg",
+          "caption": "Logotype"
+        },
+        {
+          "file": "references/enter 4st.jpg",
+          "caption": "Colours"
+        },
+        {
+          "file": "references/enter 5st.jpg",
+          "caption": "App in use"
+        },
+        {
+          "file": "references/enter 6st.jpg",
+          "caption": "Logo variations"
+        }
+      ]
+    },
+    {
+      "slug": "music-video",
+      "cover": {
+        "video": "reference6/main video.mp4",
+        "time": 11.6,
+        "fit": "contain",
+        "fill": "edge"
+      },
+      "gallery": [
+        {
+          "video": "reference6/animation music video final.mp4",
+          "poster": 43.9,
+          "caption": "Music video"
+        }
+      ]
+    },
+    {
+      "slug": "fight-club-titles",
+      "cover": {
+        "video": "reference7/Fight Club Title Sequence Final.mp4",
+        "time": 13.5,
+        "fit": "contain"
+      },
+      "gallery": [
+        {
+          "video": "reference7/Fight Club Title Sequence Final.mp4",
+          "poster": 61.3,
+          "caption": "Title sequence"
+        }
+      ]
+    },
+    {
+      "slug": "fight-club-soap",
+      "cover": {
+        "video": "reference9/0001-0240.mp4",
+        "time": 6.6,
+        "fit": "contain",
+        "fill": "edge"
+      },
+      "gallery": [
+        {
+          "video": "reference9/0001-0240.mp4",
+          "poster": 6.6,
+          "caption": "3D soap logo"
+        }
+      ]
+    }
+  ]
+}

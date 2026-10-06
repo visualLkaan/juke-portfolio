@@ -1,0 +1,18 @@
+/* Visually hidden, but focusable: the 3D DVD shows the focus (it lights up). */
+.dvd-keys button {
+  position: fixed;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.dvd-keys ul {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}

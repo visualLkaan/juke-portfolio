@@ -1,0 +1,454 @@
+.loader {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  /* Only the room's colours — sunset orange, olive walls, warm dark wood — no objects. */
+  background:
+    radial-gradient(60% 55% at 12% 8%, rgba(255, 179, 92, 0.85), transparent 70%),
+    radial-gradient(55% 50% at 92% 18%, rgba(255, 140, 60, 0.45), transparent 70%),
+    radial-gradient(70% 60% at 50% 48%, rgba(255, 196, 120, 0.35), transparent 72%),
+    radial-gradient(80% 70% at 85% 95%, rgba(120, 128, 72, 0.8), transparent 70%),
+    radial-gradient(70% 60% at 10% 90%, rgba(70, 40, 20, 0.95), transparent 70%),
+    linear-gradient(160deg, #8a7a4c 0%, #6f6a40 40%, #4a3520 75%, #2a1a0e 100%);
+  transition:
+    opacity 0.7s ease,
+    visibility 0.7s;
+}
+
+.loader__stage {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  justify-items: center;
+  gap: 18px;
+  transition: transform 0.7s cubic-bezier(0.6, 0, 0.8, 0.2);
+}
+
+.loader__face {
+  width: min(88vw, 600px, 92vh);
+  height: auto;
+  overflow: visible;
+  filter: drop-shadow(0 18px 24px rgba(0, 0, 0, 0.45));
+}
+
+/* --- Toon look: same ink, plate and tan as the 3D Juke --- */
+.lf-box {
+  fill: url(#lf-box);
+  stroke: #120c08;
+  stroke-width: 5;
+}
+.lf-box-shine {
+  fill: #f0d49e;
+  opacity: 0.55;
+}
+.lf-handle,
+.lf-button {
+  fill: #c9a46a;
+  stroke: #120c08;
+  stroke-width: 5;
+  stroke-linejoin: round;
+}
+.lf-button {
+  fill: #b48d55;
+}
+.lf-speaker {
+  fill: #8f8576;
+  stroke: #120c08;
+  stroke-width: 5;
+}
+.lf-plate {
+  fill: #fbf6ea;
+  stroke: #120c08;
+  stroke-width: 4;
+}
+.lf-pupil {
+  fill: #120c08;
+}
+.lf-glint {
+  fill: #fff;
+}
+.lf-closed,
+.lf-happy,
+.lf-brow {
+  fill: none;
+  stroke: #120c08;
+  stroke-width: 6;
+  stroke-linecap: round;
+}
+.lf-brow {
+  stroke-width: 5;
+  transition: transform 0.35s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.lf-blush {
+  fill: #ff7aa8;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.lf-cassette {
+  fill: #e9e0cc;
+  stroke: #120c08;
+  stroke-width: 4;
+}
+.lf-cassette-strip {
+  fill: #ff8a2a;
+  stroke: #120c08;
+  stroke-width: 4;
+}
+.lf-window {
+  fill: #2b2219;
+  stroke: #120c08;
+  stroke-width: 3;
+}
+.lf-tape {
+  fill: #6b4b2e;
+  transition: width 0.25s;
+}
+.lf-reel circle {
+  fill: #e9e0cc;
+  stroke: #120c08;
+  stroke-width: 3;
+}
+.lf-reel path {
+  stroke: #120c08;
+  stroke-width: 3;
+}
+.lf-reel {
+  /* Spins in place (its parent <g> positions it). */
+  transform-origin: 0 0;
+}
+.lf-z {
+  font: 400 22px 'Lilita One', 'Arial Black', sans-serif;
+  fill: #fbf6ea;
+  stroke: #120c08;
+  stroke-width: 4;
+  paint-order: stroke fill;
+}
+
+/* --- Sleeping: eyes closed, slow breathing, reels turning, z's rising --- */
+.lf-body {
+  transform-box: fill-box;
+  transform-origin: 50% 100%;
+}
+.loader--sleep .lf-body {
+  animation: lf-breathe 2.6s ease-in-out infinite;
+}
+.loader--sleep .lf-open,
+.loader--sleep .lf-happy,
+.loader--wake .lf-closed,
+.loader--wake .lf-happy,
+.loader--happy .lf-closed,
+.loader--happy .lf-open,
+.loader--leave .lf-closed,
+.loader--leave .lf-open {
+  display: none;
+}
+.loader--sleep .lf-brow {
+  transform: translateY(6px);
+}
+.lf-reel {
+  animation: lf-spin 1.6s linear infinite;
+}
+.lf-z {
+  opacity: 0;
+}
+.loader--sleep .lf-z {
+  animation: lf-z 2.4s ease-in-out infinite;
+}
+.loader--sleep .lf-z--2 {
+  animation-delay: 0.8s;
+}
+.loader--sleep .lf-z--3 {
+  animation-delay: 1.6s;
+}
+
+/* --- Waking: eyes pop open (surprised), brows jump, a blink --- */
+.loader--wake .lf-body {
+  animation: lf-hop 0.55s cubic-bezier(0.3, 1.5, 0.5, 1);
+}
+.loader--wake .lf-brow {
+  transform: translateY(-9px);
+}
+.loader--wake .lf-open {
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: lf-blink 0.7s ease 0.25s;
+}
+.loader--wake .lf-reel {
+  animation-duration: 0.5s;
+}
+
+/* --- Happy: smiling eyes, blush, a little bounce --- */
+.loader--happy .lf-body,
+.loader--leave .lf-body {
+  animation: lf-bounce 0.42s ease-in-out 2;
+}
+.loader--happy .lf-blush,
+.loader--leave .lf-blush {
+  opacity: 0.7;
+}
+.loader--happy .lf-brow,
+.loader--leave .lf-brow {
+  transform: translateY(-4px);
+}
+.loader--happy .lf-reel,
+.loader--leave .lf-reel {
+  animation-duration: 0.35s;
+}
+
+/* --- Leaving: the face rushes toward the camera and the room opens --- */
+.loader--leave {
+  opacity: 0;
+  visibility: hidden;
+  pointer-events: none;
+}
+.loader--leave .loader__stage {
+  transform: scale(2.6);
+}
+
+.loader__text {
+  display: grid;
+  justify-items: center;
+  gap: 8px;
+}
+.loader__title {
+  font: 400 clamp(26px, 4vw, 38px) 'Lilita One', 'Arial Black', sans-serif;
+  color: #ffd84a;
+  -webkit-text-stroke: 4px #120c08;
+  paint-order: stroke fill;
+  text-shadow: 3px 4px 0 rgba(0, 0, 0, 0.4);
+  letter-spacing: 0.5px;
+}
+.loader--sleep .loader__title::after {
+  content: '';
+  display: inline-block;
+  width: 1.2em;
+  text-align: left;
+  animation: lf-dots 1.4s steps(4) infinite;
+}
+.loader__lcd {
+  padding: 4px 14px;
+  border-radius: 8px;
+  border: 3px solid #120c08;
+  background: #0f1a12;
+  color: #8dffb0;
+  font: 400 20px 'VT323', ui-monospace, monospace;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px rgba(141, 255, 176, 0.6);
+}
+
+@keyframes lf-breathe {
+  50% {
+    transform: scale(1.015, 0.985);
+  }
+}
+@keyframes lf-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes lf-z {
+  0% {
+    opacity: 0;
+    transform: translate(0, 8px) scale(0.6);
+  }
+  30% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0;
+    transform: translate(10px, -16px) scale(1.1);
+  }
+}
+@keyframes lf-hop {
+  40% {
+    transform: translateY(-14px) scale(0.96, 1.05);
+  }
+  70% {
+    transform: translateY(0) scale(1.04, 0.95);
+  }
+}
+@keyframes lf-blink {
+  45% {
+    transform: scaleY(0.1);
+  }
+  60% {
+    transform: scaleY(1);
+  }
+}
+@keyframes lf-bounce {
+  50% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+}
+@keyframes lf-dots {
+  0% {
+    content: '';
+  }
+  25% {
+    content: '.';
+  }
+  50% {
+    content: '..';
+  }
+  75% {
+    content: '...';
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .loader *,
+  .loader::before {
+    animation: none !important;
+  }
+  .loader--leave .loader__stage {
+    transform: none;
+  }
+}
+
+/* --- Shiny discs in the corners, each lit by a slanting beam --- */
+.loader__corner {
+  position: absolute;
+  width: min(56vmin, 520px);
+  aspect-ratio: 1;
+  pointer-events: none;
+  transition: transform 0.8s cubic-bezier(0.6, 0, 0.8, 0.2);
+}
+.loader__corner--tl {
+  left: max(-20vmin, -190px);
+  top: max(-20vmin, -190px);
+}
+.loader__corner--br {
+  right: max(-20vmin, -190px);
+  bottom: max(-20vmin, -190px);
+}
+.loader--leave .loader__corner--tl {
+  transform: translate(-60%, -60%) rotate(-40deg);
+}
+.loader--leave .loader__corner--br {
+  transform: translate(60%, 60%) rotate(40deg);
+}
+
+.loader__disc {
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  border: 5px solid #120c08;
+  box-sizing: border-box;
+  overflow: hidden;
+  /* Silver base + rainbow interference bands. */
+  background:
+    radial-gradient(circle, transparent 0 27%, rgba(255, 255, 255, 0.35) 27.5% 29%, transparent 29.5%),
+    conic-gradient(from 20deg, #ffd1e8, #c9f2ff, #d9ffd2, #fff2b8, #ffc9d6, #d3c9ff, #c4f0ff, #fff0c2, #ffd1e8),
+    #dfe3ea;
+  background-blend-mode: normal, multiply, normal;
+  box-shadow:
+    inset 0 0 0 10px rgba(255, 255, 255, 0.45),
+    0 20px 40px rgba(0, 0, 0, 0.35);
+  animation: disc-spin 22s linear infinite;
+}
+.loader__corner--br .loader__disc {
+  animation-direction: reverse;
+  animation-duration: 28s;
+}
+/* A bright streak of reflected light sweeping across the surface. */
+.loader__disc-glare {
+  position: absolute;
+  inset: -20%;
+  background: conic-gradient(
+    from 0deg,
+    transparent 0 8%,
+    rgba(255, 255, 255, 0.85) 11%,
+    transparent 15% 50%,
+    rgba(255, 255, 255, 0.55) 54%,
+    transparent 58%
+  );
+  mix-blend-mode: screen;
+  animation: disc-glare 6s ease-in-out infinite;
+}
+/* Clear hub ring and the hole in the middle. */
+.loader__disc-hub {
+  position: absolute;
+  inset: 34%;
+  border-radius: 50%;
+  border: 5px solid #120c08;
+  background: radial-gradient(circle, transparent 0 34%, #120c08 34% 40%, rgba(240, 244, 250, 0.75) 40%);
+  box-sizing: border-box;
+}
+.loader__disc-hub::after {
+  content: '';
+  position: absolute;
+  inset: 34%;
+  border-radius: 50%;
+  background: #4a3520;
+  box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5);
+}
+
+/* Soft slanting beam of window light falling on the disc. */
+.loader__beam {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  width: 220%;
+  height: 34%;
+  transform-origin: 0 50%;
+  background: linear-gradient(90deg, rgba(255, 236, 200, 0.75), rgba(255, 210, 150, 0.25) 45%, transparent 85%);
+  filter: blur(14px);
+  mix-blend-mode: screen;
+  animation: beam-breathe 5s ease-in-out infinite;
+}
+.loader__corner--tl .loader__beam {
+  transform: rotate(32deg);
+}
+.loader__corner--br .loader__beam {
+  transform: rotate(212deg);
+  animation-delay: -2.5s;
+}
+
+/* Little four-point sparkles, like the DVDs' hover glint. */
+.loader__spark {
+  position: absolute;
+  width: 26px;
+  height: 26px;
+  background: #fffbe8;
+  clip-path: polygon(50% 0, 60% 40%, 100% 50%, 60% 60%, 50% 100%, 40% 60%, 0 50%, 40% 40%);
+  filter: drop-shadow(0 0 6px rgba(255, 240, 200, 0.9));
+  opacity: 0;
+  animation: spark 2.8s ease-in-out infinite;
+}
+.loader__corner--tl .loader__spark--1 { left: 78%; top: 70%; }
+.loader__corner--tl .loader__spark--2 { left: 60%; top: 88%; animation-delay: 0.9s; width: 16px; height: 16px; }
+.loader__corner--tl .loader__spark--3 { left: 90%; top: 52%; animation-delay: 1.8s; width: 20px; height: 20px; }
+.loader__corner--br .loader__spark--1 { left: 14%; top: 24%; animation-delay: 0.5s; }
+.loader__corner--br .loader__spark--2 { left: 32%; top: 8%; animation-delay: 1.4s; width: 16px; height: 16px; }
+.loader__corner--br .loader__spark--3 { left: 6%; top: 44%; animation-delay: 2.2s; width: 20px; height: 20px; }
+
+@keyframes disc-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@keyframes disc-glare {
+  50% {
+    transform: rotate(-35deg);
+    opacity: 0.6;
+  }
+}
+@keyframes beam-breathe {
+  50% {
+    opacity: 0.55;
+  }
+}
+@keyframes spark {
+  0%,
+  100% {
+    opacity: 0;
+    transform: scale(0.3) rotate(0deg);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1) rotate(45deg);
+  }
+}
