@@ -19,6 +19,8 @@ export const ICONS = {
   note: `M9 18V5l11-2v13 ${circle(6, 18, 3)} ${circle(17, 16, 3)}`,
   film: 'M4 3h16v18H4z M8 3v18 M16 3v18 M4 8h4 M4 12h4 M4 16h4 M16 8h4 M16 12h4 M16 16h4',
   bubbles: `${circle(8.5, 9.5, 5.5)} ${circle(17.5, 16, 3.5)} ${circle(9.5, 20.5, 1.5)} M6 8a2.5 2.5 0 0 1 2.5-2`,
+  feather: 'M20.2 3.8c-6.5-.9-12.7 3.4-14 10.5L5 19l4.7-1.2c7.1-1.3 11.4-7.5 10.5-14z M5 19l-2 2 M16 8l-7.5 7.5',
+  brick: `M3 10h18v9H3z M5.5 10V7h5v3 M13.5 10V7h5v3`,
   camera: `M3 8h4l2-3h6l2 3h4v12H3z ${circle(12, 13.5, 3.5)}`,
   chat: 'M4 5h16v11H9l-5 4z',
   briefcase: 'M3 8h18v12H3z M9 8V5h6v3 M3 13h18',

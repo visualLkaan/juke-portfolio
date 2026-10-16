@@ -280,6 +280,67 @@
           "caption": "3D soap logo"
         }
       ]
+    },
+    {
+      "slug": "univers-specimen",
+      "cover": {
+        "file": "./new projects/univers final typespecimen.jpg",
+        "fit": "contain",
+        "fill": "edge"
+      },
+      "gallery": [
+        {
+          "file": "./new projects/univers final typespecimen.jpg",
+          "caption": "Univers Specimen"
+        }
+      ]
+    },
+    {
+      "slug": "walbaum-specimen",
+      "cover": {
+        "file": "./new projects/walbaum final type specimen.jpg",
+        "fit": "contain",
+        "fill": "edge"
+      },
+      "gallery": [
+        {
+          "file": "./new projects/walbaum final type specimen.jpg",
+          "caption": "Walbaum Specimen"
+        }
+      ]
+    },
+    {
+      "slug": "calmness-photo-type",
+      "cover": {
+        "file": "./new projects/Typography Photo Typee.jpg",
+        "fit": "contain"
+      },
+      "gallery": [
+        {
+          "file": "./new projects/Typography Photo Typee.jpg",
+          "caption": "Calmness"
+        }
+      ]
+    },
+    {
+      "slug": "lego-wars",
+      "cover": {
+        "video": "./new projects/lego wars.mp4",
+        "time": 15.25,
+        "crop": [
+          0.235,
+          0,
+          0.765,
+          1
+        ]
+      },
+      "gallery": [
+        {
+          "video": "./new projects/lego wars.mp4",
+          "poster": 15.25,
+          "caption": "Lego Wars"
+        }
+      ]
     }
   ]
 }

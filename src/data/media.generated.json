@@ -266,5 +266,45 @@
       "height": 900,
       "caption": "3D soap logo"
     }
+  ],
+  "univers-specimen": [
+    {
+      "type": "image",
+      "src": "/projects/univers-specimen/g1.webp",
+      "small": "/projects/univers-specimen/g1-sm.webp",
+      "width": 2362,
+      "height": 2362,
+      "caption": "Univers Specimen"
+    }
+  ],
+  "walbaum-specimen": [
+    {
+      "type": "image",
+      "src": "/projects/walbaum-specimen/g1.webp",
+      "small": "/projects/walbaum-specimen/g1-sm.webp",
+      "width": 2362,
+      "height": 2362,
+      "caption": "Walbaum Specimen"
+    }
+  ],
+  "calmness-photo-type": [
+    {
+      "type": "image",
+      "src": "/projects/calmness-photo-type/g1.webp",
+      "small": "/projects/calmness-photo-type/g1-sm.webp",
+      "width": 1191,
+      "height": 842,
+      "caption": "Calmness"
+    }
+  ],
+  "lego-wars": [
+    {
+      "type": "video",
+      "src": "/projects/lego-wars/film1.mp4",
+      "poster": "/projects/lego-wars/film1.jpg",
+      "width": 1600,
+      "height": 941,
+      "caption": "Lego Wars"
+    }
   ]
 }

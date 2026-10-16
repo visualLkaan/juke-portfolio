@@ -9,7 +9,7 @@
 import { execFileSync } from 'node:child_process'
 import { mkdirSync, readFileSync, writeFileSync, rmSync, mkdtempSync, existsSync } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { join, extname } from 'node:path'
+import { join, extname, isAbsolute } from 'node:path'
 import sharp from 'sharp'
 import ffmpeg from 'ffmpeg-static'
 
@@ -20,7 +20,8 @@ const COVER = { w: 800, h: 880 } // matches the cover art area when the title si
 const BIG = 2400
 const SMALL = 1200
 
-const src = (f) => join(manifest.root, f)
+// Paths are relative to manifest.root, or relative to this repo when they start with "./".
+const src = (f) => (isAbsolute(f) ? f : f.startsWith('./') ? join(ROOT, f) : join(manifest.root, f))
 let n = 0
 const tmpFile = (ext) => join(tmp, `f${n++}.${ext}`)
 
