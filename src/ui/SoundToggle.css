@@ -1,8 +1,9 @@
-/* Bottom-right volume pill: speaker button + a slider that slides out to the left. */
+/* Top-right volume pill: speaker button + a slider that slides out to the left.
+   (Top-right because the host's badge covers the bottom-right corner.) */
 .volume {
   position: fixed;
   right: 18px;
-  bottom: 18px;
+  top: 18px;
   z-index: 10;
   display: flex;
   align-items: center;
@@ -107,11 +108,10 @@
   background: #ffd23f;
 }
 
-/* Phones: top-right, clear of the scrollable DVD row. */
+/* Phones: a little closer to the corner. */
 @media (max-width: 767.98px), (orientation: portrait) {
   .volume {
     top: 14px;
-    bottom: auto;
     right: 14px;
   }
 }
