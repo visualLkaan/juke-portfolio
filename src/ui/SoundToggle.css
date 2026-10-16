@@ -70,8 +70,25 @@
 
 .volume.is-open .volume__slider {
   width: 120px;
-  margin: 0 10px 0 16px;
+  margin: 0 4px 0 16px;
   opacity: 1;
+}
+
+/* The level, always visible; fixed width so the pill doesn't jump as it changes. */
+.volume__pct {
+  flex: none;
+  width: 3.1em;
+  padding-left: 6px;
+  font: 800 15px/1 'Nunito', sans-serif;
+  font-variant-numeric: tabular-nums;
+  text-align: center;
+  color: #120c08;
+  user-select: none;
+}
+
+.volume__pct.is-muted {
+  color: #9a8a70;
+  letter-spacing: 0.5px;
 }
 
 /* Track: filled up to the current level. */

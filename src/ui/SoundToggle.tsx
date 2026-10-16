@@ -5,9 +5,10 @@ import { DEFAULT_VOLUME, useJukeStore } from '../juke/useJukeStore'
 import './SoundToggle.css'
 
 /**
- * Bottom-right volume control. Sound is on by default at a comfortable level.
+ * Top-right volume control. Sound is on by default at a comfortable level.
  * The speaker mutes / unmutes (back to the last level); the slider opens on hover
- * or focus (tap on phones). The mouse wheel over it also changes the volume.
+ * or focus (tap on phones). The mouse wheel over it also changes the volume, and
+ * the current level is always shown as a percentage.
  */
 export function SoundToggle() {
   const volume = useJukeStore((s) => s.volume)
@@ -60,6 +61,9 @@ export function SoundToggle() {
         onPointerUp={preview}
         onKeyUp={(e) => e.key.startsWith('Arrow') && preview()}
       />
+      <span className={`volume__pct${muted ? ' is-muted' : ''}`} aria-hidden="true">
+        {muted ? 'OFF' : `${pct}%`}
+      </span>
       <button
         type="button"
         className="volume__button"
