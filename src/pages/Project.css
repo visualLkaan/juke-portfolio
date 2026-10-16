@@ -10,7 +10,9 @@
   background:
     radial-gradient(120% 70% at 50% 0%, color-mix(in srgb, var(--c) 45%, transparent) 0%, transparent 60%),
     linear-gradient(180deg, #1d1820 0%, #141016 100%);
-  animation: deck-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) both;
+  /* backwards, not both: a leftover filter/transform would make .deck the containing
+     block of the position: fixed bits (mini Juke, scroll hint) and they'd scroll away. */
+  animation: deck-in 0.7s cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
 }
 
 /* Faint CRT scanlines over everything. */
@@ -177,7 +179,22 @@
 }
 
 .deck__icon {
-  font-size: 40px;
+  display: inline-grid;
+  place-items: center;
+  width: 54px;
+  height: 54px;
+  border: 3px solid #0d0a0f;
+  border-radius: 14px;
+  background: #fffaf0;
+  box-shadow: 0 4px 0 #0d0a0f;
+  color: #1a1030;
+  font-size: 30px;
+}
+
+.deck__play {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
 }
 
 .deck__title {
@@ -278,6 +295,36 @@
   z-index: 3;
   filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.5));
   animation: mini-bob 2.4s ease-in-out infinite;
+}
+
+.mini-juke svg {
+  display: block;
+  width: 96px;
+  height: 64px;
+}
+
+.mini-juke--bar {
+  display: none;
+}
+
+/* No free margin beside the gallery (up to 1400px wide): dock him in the header bar. */
+@media (max-width: 1659.98px) {
+  .mini-juke--float {
+    display: none;
+  }
+  .mini-juke--bar {
+    display: block;
+    position: relative;
+    right: auto;
+    bottom: auto;
+    flex: none;
+    margin: -6px 0;
+    filter: drop-shadow(0 3px 5px rgba(0, 0, 0, 0.45));
+  }
+  .mini-juke svg {
+    width: 66px;
+    height: 44px;
+  }
 }
 
 @keyframes mini-bob {

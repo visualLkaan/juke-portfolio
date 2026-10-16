@@ -1,6 +1,7 @@
 import * as THREE from 'three'
 import type { Project } from '../data/projects'
 import { CANVAS, CASE } from './config'
+import { drawIcon, type IconName } from '../ui/icons'
 
 /*
  * Every face of a DVD is drawn here from project data alone: front cover, spine,
@@ -176,20 +177,11 @@ function coverImage(g: Ctx, img: HTMLImageElement, x: number, y: number, w: numb
   g.drawImage(img, x + (w - iw) / 2, y + (h - ih) / 2, iw, ih)
 }
 
-/** The project's logo image if it has one, otherwise its emoji icon. */
-function badge(g: Ctx, icon: string, logo: Img, x: number, y: number, size: number) {
-  if (!logo) return emoji(g, icon, x, y, size)
+/** The project's logo image if it has one, otherwise its line icon (on the cream badge). */
+function badge(g: Ctx, icon: IconName, logo: Img, x: number, y: number, size: number) {
+  if (!logo) return drawIcon(g, icon, x, y, size * 0.86, '#1a1030')
   const s = size * 1.12
   g.drawImage(logo, x - s / 2, y - s / 2, s, s)
-}
-
-function emoji(g: Ctx, icon: string, x: number, y: number, size: number) {
-  g.save()
-  g.font = `${size}px "Segoe UI Emoji", "Apple Color Emoji", "Noto Color Emoji", sans-serif`
-  g.textAlign = 'center'
-  g.textBaseline = 'middle'
-  g.fillText(icon, x, y + size * 0.05)
-  g.restore()
 }
 
 /** Splits text into at most `maxLines` lines that fit `width`; the last line is ellipsised. */
@@ -525,7 +517,7 @@ function drawPlaceholder(g: Ctx, p: Project, x: number, y: number, w: number, h:
   g.shadowColor = 'rgba(0,0,0,0.35)'
   g.shadowBlur = hs * 0.08
   g.shadowOffsetY = hs * 0.04
-  emoji(g, p.icon, hx, hy, hs)
+  drawIcon(g, p.icon, hx, hy, hs, isLight(p.color) ? '#1a1030' : '#fffaf0')
   g.restore()
 }
 

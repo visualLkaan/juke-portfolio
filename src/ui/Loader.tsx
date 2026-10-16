@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { useLoad } from './loadState'
+import { Icon } from './Icon'
 import './Loader.css'
 
 type Phase = 'sleep' | 'wake' | 'happy' | 'leave'
@@ -141,7 +142,10 @@ export function Loader() {
 
         <div className="loader__text">
           <span className="loader__title">{phase === 'sleep' ? 'Juke is waking up' : 'Hi there!'}</span>
-          <span className="loader__lcd">{phase === 'sleep' ? `▶ LOADING ${String(pct).padStart(2, '0')}%` : '▶ PLAY'}</span>
+          <span className="loader__lcd">
+            <Icon name="play" size="0.62em" />
+            {phase === 'sleep' ? `LOADING ${String(pct).padStart(2, '0')}%` : 'PLAY'}
+          </span>
         </div>
       </div>
     </div>

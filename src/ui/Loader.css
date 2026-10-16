@@ -229,6 +229,9 @@
   animation: lf-dots 1.4s steps(4) infinite;
 }
 .loader__lcd {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   padding: 4px 14px;
   border-radius: 8px;
   border: 3px solid #120c08;

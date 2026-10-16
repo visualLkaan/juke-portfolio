@@ -25,6 +25,11 @@ type Props = Omit<ThreeElements['group'], 'ref'> & {
   tilt?: [number, number, number]
   /** 0 = closed, 1 = lid swung fully open (used by the insert transition). */
   open?: number
+  /**
+   * Self-light for the printed sleeve (0 = none): lifts the cover by its own colours,
+   * so it brightens without flattening contrast or washing out the text.
+   */
+  coverLight?: number
 }
 
 const { width: W, height: H, depth: D, lidThickness: LID, radius: RAD, discRadius: R } = CASE
@@ -37,7 +42,7 @@ const EPS = 0.0004
  * A glossy black DVD case built from the project data: printed cover under a clear
  * sleeve, spine, back, a hinged lid and a disc that slides out on hover.
  */
-export function DvdCase({ ref, project, hovered = false, tilt = [0, 0, 0], open = 0, ...props }: Props) {
+export function DvdCase({ ref, project, hovered = false, tilt = [0, 0, 0], open = 0, coverLight = 0, ...props }: Props) {
   const covers = useMemo(() => createCoverSet(project), [project])
   useEffect(() => () => covers.dispose(), [covers])
 
@@ -94,6 +99,14 @@ export function DvdCase({ ref, project, hovered = false, tilt = [0, 0, 0], open 
     }
   }, [covers, project.color])
   useEffect(() => () => Object.values(mats).forEach((m) => m.dispose()), [mats])
+  useEffect(() => {
+    for (const m of [mats.front, mats.spine]) {
+      m.emissive.set(coverLight > 0 ? 0xffffff : 0x000000)
+      m.emissiveMap = coverLight > 0 ? m.map : null
+      m.emissiveIntensity = coverLight
+      m.needsUpdate = true
+    }
+  }, [mats, coverLight])
 
   const root = useRef<THREE.Group>(null!)
   const ctrl = useMemo(() => ({ open: 0, straight: 0, discFree: false }), [])

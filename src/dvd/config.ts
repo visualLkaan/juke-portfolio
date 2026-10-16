@@ -32,14 +32,14 @@ export const FLOAT = {
 // Desktop: a loose rainbow-shaped arc to Juke's right. Angles in degrees on an
 // ellipse around `center` (180 = left end near Juke, 0 = right end).
 export const SHELF = {
-  center: [0.6, 0.32] as [number, number],
-  radius: [0.6, 0.48] as [number, number], // ellipse x / y radius of the outer row
+  center: [0.68, 0.32] as [number, number],
+  radius: [0.7, 0.54] as [number, number], // ellipse x / y radius of the outer row
   rowShrink: 0.5, // the inner row's arc is this much smaller
   singleRowMax: 7, // more projects than this → a second, inner row
   angles: [160, 20] as [number, number],
   z: 1.4,
   rowDepth: 0.14, // inner rows float a bit closer to the camera
-  scale: 1.08,
+  scale: 1.02,
   jitter: 0.035,
   tilt: 0.14, // random roll, radians
   faceJuke: -0.12, // extra yaw toward Juke, on top of facing the camera
@@ -60,4 +60,6 @@ export const RAIL = {
   itemPx: 118,
   heightPx: 190,
   z: 2.7,
+  // The row sits low in the room's shade; the covers get a little light of their own.
+  coverLight: 0.3,
 }

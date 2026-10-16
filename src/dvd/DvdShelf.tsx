@@ -217,6 +217,7 @@ export function DvdShelf({ projects: all, onSelect }: { projects: Project[]; onS
                   project={p}
                   tilt={railMode ? [0, 0, slot.tilt[2] * 0.3] : slot.tilt}
                   hovered={hovered === p.slug}
+                  coverLight={railMode ? RAIL.coverLight : 0}
                   open={dev.open}
                   onPointerOver={(e) => {
                     if (!usable(p)) return

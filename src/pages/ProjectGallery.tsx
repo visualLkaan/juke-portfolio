@@ -1,6 +1,7 @@
 import { useCallback, useEffect, useRef, useState, type PointerEvent as RPointerEvent } from 'react'
 import { createPortal } from 'react-dom'
 import type { MediaItem } from '../data/projects'
+import { Icon } from '../ui/Icon'
 import './ProjectGallery.css'
 
 type Img = Extract<MediaItem, { type: 'image' }>
@@ -91,7 +92,9 @@ function Shot({ item, index, onOpen }: { item: MediaItem; index: number; onOpen:
               decoding="async"
               draggable={false}
             />
-            <span className="shot__zoom" aria-hidden="true">⤢</span>
+            <span className="shot__zoom" aria-hidden="true">
+              <Icon name="expand" />
+            </span>
           </button>
         ) : (
           <video
@@ -216,15 +219,15 @@ function Lightbox({ images, start, onClose }: { images: Img[]; start: number; on
       {images.length > 1 && (
         <>
           <button type="button" className="lightbox__nav lightbox__nav--prev" onClick={() => go(-1)} aria-label="Previous image">
-            ‹
+            <Icon name="prev" />
           </button>
           <button type="button" className="lightbox__nav lightbox__nav--next" onClick={() => go(1)} aria-label="Next image">
-            ›
+            <Icon name="next" />
           </button>
         </>
       )}
       <button type="button" className="lightbox__close" onClick={onClose} aria-label="Close" autoFocus>
-        ✕
+        <Icon name="close" />
       </button>
     </div>
   )

@@ -40,3 +40,11 @@
     animation: none;
   }
 }
+
+/* Phones: the DVD row lives along the bottom edge — keep the vignette off it. */
+@media (max-width: 767.98px), (orientation: portrait) {
+  .film__vignette {
+    background:
+      radial-gradient(ellipse 85% 62% at 50% 38%, transparent 55%, rgba(30, 12, 2, var(--v)) 100%) top / 100% calc(100% - 190px) no-repeat;
+  }
+}

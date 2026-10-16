@@ -3,6 +3,7 @@ import * as THREE from 'three'
 import type { Project as ProjectData } from '../data/projects'
 import { renderFrontCover } from '../dvd/coverTexture'
 import { ProjectGallery } from './ProjectGallery'
+import { Icon } from '../ui/Icon'
 import './Project.css'
 
 const luminance = (hex: string) => {
@@ -65,8 +66,8 @@ export function ProjectPage({ project: p, onEject }: { project: ProjectData; onE
     '--title': light ? p.color : '#ffd84a',
   } as CSSProperties
   const links = [
-    { key: 'live', label: 'Live site', icon: '▶', href: p.links.live },
-    { key: 'github', label: 'GitHub', icon: '⌘', href: p.links.github },
+    { key: 'live', label: 'Live site', icon: 'play' as const, href: p.links.live },
+    { key: 'github', label: 'GitHub', icon: 'code' as const, href: p.links.github },
   ]
 
   return (
@@ -83,14 +84,15 @@ export function ProjectPage({ project: p, onEject }: { project: ProjectData; onE
     >
       <header className="deck__bar">
         <button type="button" className="deck__key deck__eject" onClick={onEject} aria-label="Eject — back to Juke's room">
-          <span aria-hidden="true">⏏</span> Eject
+          <Icon name="eject" /> Eject
         </button>
         <div className="deck__lcd" aria-hidden="true">
           <span className="deck__led" />
-          <span>▶ PLAY</span>
+          <span className="deck__play"><Icon name="play" size="0.7em" /> PLAY</span>
           <span className="deck__lcd-title">{p.title.toUpperCase()}</span>
           <span>{time}</span>
         </div>
+        <MiniJuke progress={scroll} where="bar" />
       </header>
 
       <main className="deck__screen">
@@ -100,7 +102,7 @@ export function ProjectPage({ project: p, onEject }: { project: ProjectData; onE
           </div>
           <div className="deck__info">
             <span className="deck__icon" aria-hidden="true">
-              {p.icon}
+              <Icon name={p.icon} />
             </span>
             <h1 className="deck__title">{p.title}</h1>
             <p className="deck__tagline">{p.tagline}</p>
@@ -115,7 +117,7 @@ export function ProjectPage({ project: p, onEject }: { project: ProjectData; onE
                   .filter((l) => l.href)
                   .map((l) => (
                     <a key={l.key} className="deck__key deck__key--accent" href={l.href} target="_blank" rel="noreferrer">
-                      <span aria-hidden="true">{l.icon}</span> {l.label}
+                      <Icon name={l.icon} /> {l.label}
                     </a>
                   ))}
               </div>
@@ -139,7 +141,7 @@ export function ProjectPage({ project: p, onEject }: { project: ProjectData; onE
           tabIndex={scrolled ? -1 : 0}
         >
           <span className="scroll-hint__icon" aria-hidden="true">
-            {p.gallery.some((m) => m.type === 'video') ? '▶' : '◆'}
+            <Icon name={p.gallery.some((m) => m.type === 'video') ? 'play' : 'diamond'} size={13} />
           </span>
           {p.gallery.some((m) => m.type === 'video') ? 'Scroll down to watch the film' : 'Scroll down to see the work'}
           <span className="scroll-hint__arrows" aria-hidden="true">
@@ -149,13 +151,17 @@ export function ProjectPage({ project: p, onEject }: { project: ProjectData; onE
         </button>
       )}
 
-      <MiniJuke progress={scroll} />
+      <MiniJuke progress={scroll} where="float" />
     </div>
   )
 }
 
-/** Little Juke in the corner; his eyes follow you down the page. */
-function MiniJuke({ progress }: { progress: number }) {
+/**
+ * Little Juke; his eyes follow you down the page. Floats in the bottom-right corner
+ * when the screen has a free margin for him, otherwise sits in the header bar so he
+ * never covers the text (both are rendered; CSS shows one).
+ */
+function MiniJuke({ progress, where }: { progress: number; where: 'float' | 'bar' }) {
   const [blink, setBlink] = useState(false)
   const [mx, setMx] = useState(0)
   useEffect(() => {
@@ -188,7 +194,7 @@ function MiniJuke({ progress }: { progress: number }) {
     </g>
   )
   return (
-    <div className="mini-juke" aria-hidden="true">
+    <div className={`mini-juke mini-juke--${where}`} aria-hidden="true">
       <svg viewBox="0 0 96 64" width="96" height="64">
         <path d="M30 14 v-8 h36 v8" fill="none" stroke="#120c08" strokeWidth={3} strokeLinejoin="round" />
         <rect x={4} y={14} width={88} height={44} rx={9} fill="#c9a46a" stroke="#120c08" strokeWidth={3} />
